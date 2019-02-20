@@ -10,9 +10,10 @@
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \usepackage{enumerate}
-% \usepackage{tcolorbox}
 \usepackage{titlesec}
 \usepackage{booktabs}
+\usepackage{bm}
+\usepackage{pdfpages}
 
 \titleformat{\subsection}
   {\normalfont\large\bfseries}{}{0em}{}
@@ -32,6 +33,8 @@
 \maketitle
 
 \tableofcontents
+\listoffigures
+\listoftables
 
 \section{Problems}
 
@@ -47,6 +50,7 @@ For a diatomic bond of \ce{Cu2},
 	\item Calculate the ``spring constant" $f$, assuming an interatomic spacing of \SI{0.209}{\nano\meter}.
 
 	      \textbf{Solution:}
+	      Please notice that $\alpha$ here is not the thermal expansion, it's just a coefficient.
 	      \begin{equation}
 		      \begin{split}
 			      f &= \Big( \frac{ \partial^2 U }{ \partial d^2 } \Big)_{ d = d_0 } \\
@@ -92,12 +96,13 @@ For a diatomic bond of \ce{Cu2},
 	      \begin{equation}
 		      d = \frac{a}{\sqrt{2}} = \SI{0.255}{\nano\meter},
 	      \end{equation}
-	      in a FCC crystal. So
+	      in a FCC crystal. For every atom, there are $12$ bonds with $12$ nearest neighbors, and every bondis shared by
+	      $2$ atoms. Therefore, every atom has $6$ bonds. So the cohesive energy is
 	      \begin{equation}
 		      U(d) = \frac{1}{2} \times 12 D(e^{-2\alpha(d - d_0)} - 2e^{-\alpha (d - d_0)})
-		      \approx \SI{-2.59e-19}{\joule} \approx \SI{-2.05}{\electronvolt}.
+		      \approx \SI{-2.31e-19}{\joule} \approx \SI{-1.45}{\electronvolt},
 	      \end{equation}
-	      We devide it by $2$ because of double counting.
+	      where $d_0 = \SI{2.87}{\angstrom}$.\cite{PhysRev.114.687}
 \end{enumerate}
 
 \subsection{1.2}
@@ -138,7 +143,7 @@ For the optical mode,
 		B
 	\end{bmatrix} = 0,
 \end{equation}
-then we have $A = -B$, so the atoms move in the opposite direction but with the same amplitude.
+then we have $A = -B$, so the atoms move in the opposite direction but the same amplitude.
 
 \subsection{1.3}
 
@@ -162,7 +167,7 @@ Consider wavelike solution for $n$th atom,
 \end{equation}
 where $x_n = n a$, we get
 \begin{align}
-	-m \omega^2 A e^{i (k n a - \omega t)} & = -k_A A(2 e^{i (k n a - \omega t)} - e^{i (k (n-1)a - \omega t)} - e^{i (k (n+1)a - \omega t)}), \\
+	-m \omega^2 A e^{i (k n a - \omega t)} & = -k_A A(2 e^{i (k n a - \omega t)} - e^{i [k (n-1)a - \omega t]} - e^{i [k (n+1)a - \omega t]}), \\
 	m \omega^2 A e^{i k n a}               & = k_A A(2 e^{i k n a} - e^{i k (n-1)a} - e^{i k (n+1)a}),                                         \\
 	m \omega^2                             & = k_A (2 - e^{-i k a} - e^{i k a}),                                                               \\
 	m \omega^2                             & = k_A (2 - 2 \cos(k a)),                                                                          \\
@@ -250,28 +255,28 @@ Then cohesive energy is:
 \end{equation}
 
 \begin{table}[h]
-  \centering
-  \caption{Cohesive energy and Debye temperature for selected elements.}
-    \begin{tabular}{ccc}
-    	\toprule
-    Element & Cohesive energy (\si{\electronvolt}/atom) & Debye temperature (K) \\
-     \midrule
-    \ce{Si} & 4.63  & 625 \\
-    \ce{Cu} & 3.49  & 315 \\
-    \ce{Ge} & 3.85  & 360 \\
-    \ce{Sn} & 3.14  & 200 \\
-    \ce{Ag} & 2.95  & 215 \\
-    \ce{Au} & 3.81  & 170 \\
-    \bottomrule
-    \end{tabular}%
-  \label{tab:pro14}%
+	\centering
+	\caption{Cohesive energy and Debye temperature for selected elements.}
+	\begin{tabular}{ccc}
+		\toprule
+		Element & Cohesive energy (\si{\electronvolt}/atom) & Debye temperature (K) \\
+		\midrule
+		\ce{Si} & 4.63                                      & 625                   \\
+		\ce{Cu} & 3.49                                      & 315                   \\
+		\ce{Ge} & 3.85                                      & 360                   \\
+		\ce{Sn} & 3.14                                      & 200                   \\
+		\ce{Ag} & 2.95                                      & 215                   \\
+		\ce{Au} & 3.81                                      & 170                   \\
+		\bottomrule
+	\end{tabular}%
+	\label{tab:pro14}%
 \end{table}%
 
 \textbf{In this case, all we can say is that no clear relationship exists.}
 Tabulated cohesive energies, $U_0$, vs.
-Debye temperatures, $\theta$, for the requested elements are listed in table 1.
-Plotting $\sqrt{U_0}$ vs. $\theta$, as done in figure 2, shows a linear relationship,
-except for \ce{Au}. Some additional figures are provided at the end of the solution
+Debye temperatures, $\theta$, for the requested elements are listed in table \ref{tab:pro14}.
+Plotting $\sqrt{U_0}$ vs. $\theta$, as done in figure \ref{fig:pro14}, shows a linear relationship,
+except for \ce{Au}. Some additional figures (credit to Michael Carter) are provided at the end of the solution
 set to help visualize how changing the power law constants changes the $U(d)$, $d_0$, $U_0$
 and $f \propto \partial^2 U / \partial^2 d$. These
 are not definitive relationships for all such changes in the power law constants and are really meant only to
@@ -284,9 +289,115 @@ problem solution, as a visual aid, and were not actually required as part of the
 	\caption{The square root of cohesive energy and Debye temperature for selected elements, and a linear fitting.}
 	\label{fig:pro14}
 \end{figure}
+\newpage
 
+\subsection{1.5}
+Calculate the Debye temperature for a fictitious FCC crystal with \SI{100}{\gram\per\mole}, lattice parameter of \SI{0.4}{\nano\meter},
+and isotropic speed of sound \SI{5}{\kilo\meter\per\second}.
 
+\textbf{Solution:}
+Again, the Debye temperature is
+\begin{equation}
+	\theta = \frac{\hbar v_m}{k_B} (6 \pi^2 n_\text{at})^{\frac{ 1 }{ 3 }}.
+\end{equation}
+For an FCC lattice,
+\begin{equation}
+	n_\text{at} = \frac{ 4 }{ a^3 }.
+\end{equation}
+Plugging in given values and evaluating yields $\theta = \SI{591.38}{\kelvin}$.
 
+\subsection{1.6}
+Derive the low-temperature limit of heat capacity, $C_V(T)$,
+for a two-dimensional lattice, in terms of the Debye temperature $\theta$ and the Boltzmann constant $k_B$ only.
+
+\textbf{Solution:}
+
+For every atom, there are still $3$ polarizations (we are still in the 3D space). For example, in graphene, there
+are $2$ atoms and $3$ polarizations. Thus there are $6$ modes in total.
+Graphene's phonon modes comprise $3$ acoustic (A) branches and $3$ optical (O) branches.
+The modes are associated with out-of-plane (Z), in-plane longitudinal (L), and in-plane transverse (T) atomic motions.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{images/graphene}
+	\caption{a) Atomic motions of carbon atoms in graphence can be along the out-of-plane (Z), in-plane transverse (T), and in-plane longitudinal (L) direction. b) The phonon dispersion branches for a graphene sheet, plotted along high symmetry directions.\cite{mahdipourfath}}
+	\label{fig:graphene}
+\end{figure}
+
+According to Bloch theorem, on each direction, the distance between $2$ nearest k-point is $\frac{ 2 \pi }{ L }$,
+where $L$ is the crystal's lattice parameter. So each k-point in the 2D k-space occupies
+\begin{equation}
+	A_{\Delta \bm{k}} = \Big( \frac{ 2 \pi }{ L } \Big)^2
+\end{equation}
+of the space. So the number of k-points in such a 2D k-disk with radius $k$ is
+\begin{equation}\label{eq:nsmallk}
+	\mathcal{N}(\mathbf{ k }) = \frac{ \pi k^2 }{ A_{\Delta \bm{k}} },
+\end{equation}
+so the total number of modes in this disk is
+\begin{equation}\label{eq:nk}
+	N(\bm{k}) = 3 \mathcal{N}(\bm{k}) = 3 \frac{ \pi k^2 }{ \Big( \frac{ 2 \pi }{ L } \Big)^2 }.
+\end{equation}
+According to Debye relation,
+\begin{equation}
+	E = \hbar v_m k,
+\end{equation}
+we replace the variable of $k$ by $E$ in \eqref{eq:nk},
+\begin{equation}
+	N(E) = \frac{ 3 A }{ 4 \pi } \frac{ E^2 }{ \hbar^2 v_m^2 },
+\end{equation}
+where $A = L^2$.
+The density of states as a function of $E$ is
+\begin{equation}
+	g(E) = \frac{ dN(E) }{ dE } = \frac{ 3 A }{ 2 \pi } \frac{ E }{ \hbar^2 v_m^2 }.
+\end{equation}
+When the $k$ in \eqref{eq:nsmallk} is the ``Debye wave vector" $k_D$, $\mathcal{N}(\bm{k}) = N$, which
+is the total number of k-points we need to sample.
+Thus
+\begin{align}
+	N                   & = \frac{ \pi k_D^2 A }{ 4 \pi^2 }, \\
+	n = \frac{ N }{ A } & = \frac{ \pi k_D^2 }{ 4 \pi^2 },   \\
+	k_D                 & = \sqrt{4 \pi n}.
+\end{align}
+Thus the Debye temperature is
+\begin{equation}
+	\theta = \frac{ \hbar \omega_D }{ k_B } = \frac{ \hbar v_m k_D }{ k_B } = \frac{ \hbar v_m }{ k_B } \sqrt{4 \pi n}.
+\end{equation}
+For particles which are not conserved, like phonons, the Bose-Einstein distribution is
+\begin{equation}
+	f_p(E) = \frac{ 1 }{ \exp(E / k_B T) - 1 }.
+\end{equation}
+So the internal energy is
+\begin{equation}\label{eq:U}
+	\begin{split}
+		U &= \int_{0}^{k_B \theta} g(E) f_p(E) E \, dE \\
+		&= \int_{0}^{k_B \theta} \frac{ 3 A }{ 2 \pi } \frac{ 1 }{ \hbar^2 v_m^2 } \frac{ E^2 }{ \exp(E / k_B T) - 1 } \, dE,
+	\end{split}
+\end{equation}
+assume
+\begin{equation}
+	x = \frac{ E }{ k_B T },
+\end{equation}
+\eqref{eq:U} becomes
+\begin{equation}
+	U = \frac{ 3 A }{ 2 \pi } \frac{ 1 }{ \hbar^2 v_m^2 } (k_B T)^3 \int_{0}^{\theta / T} \frac{ x^2 }{ e^x - 1 } \, dx.
+\end{equation}
+In the low-temperature limit, $T \rightarrow 0$, $\frac{\theta}{T} \rightarrow \infty$, therefore
+\begin{equation}
+	\int_{0}^{\theta / T} \frac{ x^2 }{ e^x - 1 } \, dx = 2 \zeta(3) \approx 2.40411.
+\end{equation}
+where $\zeta(x)$ is the Riemann zeta function.
+So the heat capacity is
+\begin{equation}
+	C_V = \frac{ dU }{ dT } = \frac{ 9 A }{ \pi } \frac{ 1 }{ \hbar^2 v_m^2 } \zeta(3) k_B^3 T^2.
+\end{equation}
+The specific heat is
+\begin{equation}
+	C_v = \frac{ C_V }{ N } = 36 \zeta(3) k_B \frac{ T^2 }{ \theta^2 } \approx 43.274 k_B \frac{ T^2 }{ \theta^2 }.
+\end{equation}
+
+\includepdf[pages=-]{images/a-b}
+
+\bibliographystyle{unsrt}
+\bibliography{ref}
 % --------------------------------------------------------------
 %     You don't have to mess with anything below this line.
 % --------------------------------------------------------------

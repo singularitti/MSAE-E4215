@@ -1,0 +1,122 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref} % Uso de links
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{enumerate}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{bm}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{}{0em}{}
+
+\setlength{\parindent}{0em}
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Mechanical Properties of Materials (MSAE 4215), Spring 2019\\ Homework 2 Solutions}
+\author{Qi Zhang}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\section{Problems}
+\subsection{2.1}
+Consider a solid cylinder, radius $R$, length $l$, density $\rho$ standing up on its end,
+so that its total height (in $x_3$) above the pavement is $l$. Assume normal stresses only.
+Derive an expression for the stress in the material as a function of $x_3$, and
+plot $\sigma_{33}(x_3)$. How tall can a solid column of concrete ($\rho = \SI{2}{\gram\per\cubic\centi\meter}$)
+be made before the maximum shear stress exceeds the critical shear stress for
+fracture, $\tau_c = \SI{10}{\mega\pascal}$? Take $\sigma_{33} \sim \tau_\text{max}$ at fracture.
+(Recall that the total forces exerted on the body have to sum to zero.)
+
+\textbf{Solution:}
+
+
+
+
+
+\subsection{2.2}
+Consider a small sphere of \ce{NdFeB} permanent magnet material in a large,
+uniform, superconducting magnetic field of \SI{10}{\tesla}. If its magnetization $M$
+is initially orthogonal to the applied field $\mu_0 H$ when the field is (instantaneously)
+turned on, does the sphere shatter? Take $\tau_c = \SI{50}{\mega\pascal}$? and
+$\mu_0 M_s = \SI{0.5}{\tesla}$.
+
+\textbf{Solution:}
+
+
+\subsection{2.3}
+There is a longstanding proposal for a space elevator, as pictured in
+Figure $2.5$. If a mass $M$ can be attached to a long cable, length $l$, and $l \gg R$,
+where $R$ is the radius of the earth, gravity is less strong than the centrifugal force,
+the cable might be supported.
+1) Assume that there is no counterweight ($M = 0$). For a cable density $\rho$,
+how long does the cable need to be for it to stand up (i.e. all sections in tension)?
+Estimate $l/R$ for a density of $\rho = \SI{2}{\gram\per\cubic\centi\meter}$,
+appropriate for carbon fiber. 2) Plot the stress in the cable, and calculate the
+maximum stress.
+
+\textbf{Solution:}
+
+
+
+\subsection{3.1}
+For a solid cylinder under uniaxial normal stress along $x_2$, $\sigma_{22} = \sigma$,
+\begin{itemize}
+    \item Find the shear stress $\sigma_{\alpha\beta}$ for orthonormal ($\alpha$, $\beta$, $x_3$)
+          and $\alpha$, $\beta$ rotated by $\theta_3$ about $x_3$ with respect to $x_1$, $x_2$.
+    \item Find the shear stress $\sigma_{\alpha\beta}$ for a general rotation $\theta$,
+          and show that it is maximum for $\theta = \pi/4$.
+\end{itemize}
+
+
+\subsection{3.2}
+Consider the following biaxial stress state: $\sigma_{11} = \SI{300}{\mega\pascal}$,
+$\sigma_{22} = \SI{100}{\mega\pascal}$, $\sigma_{12} = \SI{100}{\mega\pascal}$,
+with $\alpha$, $\beta$ axes defined as before
+\begin{itemize}
+    \item Determine the rotation $\theta_3$ such that $\alpha$, $\beta$ are principal axes.
+    \item Determine the principal stresses $\sigma_{\alpha\alpha}$, $\sigma_{\beta\beta}$.
+    \item Determine the $\theta_3$ for maximum in-plane shear and the magnitude of the maximum $\sigma_{\alpha\beta}$.
+\end{itemize}
+
+
+\subsection{3.3}
+Take the following stress tensor:
+\begin{equation}
+    [\sigma] = \begin{bmatrix}
+        0           & \sigma_{12} & 0           \\
+        \sigma_{12} & \sigma_{22} & \sigma_{23} \\
+        0           & \sigma_{23} & 0
+    \end{bmatrix}
+\end{equation}
+Note that no principal stress axis is known \textit{a priori}.
+\begin{itemize}
+    \item Write an expression for the principal stresses. How many nonzero principal stresses are there?
+    \item Verify that the dilation $\Delta$ is invariant on transforming to the principal axes.
+    \item Solve the principal stresses for $\sigma_{22} = \SI{200}{\mega\pascal}$,
+          $\sigma_{12} = \sigma_{23} = \sqrt{2} \cdot \SI{100}{\mega\pascal} \sim \SI{141}{\mega\pascal}$.
+    \item Determine the principal axes. If there is plane stress in the transformed coordinates, determine the normal to the plane.
+\end{itemize}
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

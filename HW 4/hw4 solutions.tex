@@ -203,32 +203,15 @@ If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ i
 	      \textbf{Solution:}
 	      \begin{figure}[h]
 		      \centering
-		      \includegraphics[width=0.6\linewidth]{images/support2}
+		      \includegraphics[width=0.6\linewidth]{images/support}
 		      \caption{Shear and moment diagram for a simply supported beam with a concentrated load at mid-span. Taken from \url{https://en.wikipedia.org/wiki/Bending_moment}.}
 		      \label{fig:support}
 	      \end{figure}
-	      Assume $P$ is pointing toward $+y$ direction.
-	      Because of symmetry, we know that each end provides $\frac{ P }{ 2 }$ support toward $-y$ direction, as figure \ref{fig:support}
-	      shows. Take $x = 0$ as the reference point.
-	      So the bending moment follows
-	      \begin{multline}
-		      \bm{M}(x) = \sum_{i} \bm{r}_{i} \times \bm{F}_{i} = M_z(x) \hat{\bm{z}}\\
-		      = \begin{cases}
-			      -x \frac{ P }{ 2 } \hat{\bm{z}},                                                                                        & 0 \le x \le \frac{L}{2},     \\
-			      -\Big( - \big( x - \frac{ L }{ 2 } \big) P + \frac{ P }{ 2 }x \Big)\hat{\bm{z}} = -\frac{ P }{ 2 } (L - x)\hat{\bm{z}}, & \frac{ L }{ 2 } \le x \le L,
-		      \end{cases}
-	      \end{multline}
-	      where $\hat{\bm{z}}$ is the unit vector along $+z$ direction.
-	      Its maximum reaches at $x = \frac{ L }{ 2 }$, where $M_\text{max} = \frac{ P L }{ 4 }$.
-
-	      We will have the same result for $P$ toward $+z$ direction, based on the symmetry.
-	      \begin{equation}
-		      \bm{M}'(x) = M_y(x) \hat{\bm{y}}
-		      = \begin{cases}
-			      -x \frac{ P }{ 2 } \hat{\bm{y}},      & 0 \le x \le \frac{L}{2},     \\
-			      -\frac{ P }{ 2 } (L - x)\hat{\bm{y}}, & \frac{ L }{ 2 } \le x \le L,
-		      \end{cases}
-	      \end{equation}
+	      For simple support, there is no shear force.
+	      Zero shear $\sigma_{xy}$ implies constant bending moment $M_z$ throughout the beam, denoted as
+	      $M$ here. (This situation is known as ``pure bending".)
+	      It is the same for $z$ direction loading by symmetry, so $M_y = M$.
+	      
 
 	\item For Young's modulus $E$, what will be the curvature of the beam if the load is placed in
 	      \begin{enumerate}[(b1)]
@@ -243,14 +226,14 @@ If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ i
 		            \begin{equation}
 			            \begin{split}
 				            \bigg| \frac{ \partial^2 z }{ \partial  x^2} \bigg| &= \frac{ M_y }{ E I_y }\\
-				            &= \frac{ M(x) }{ E  \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
+				            &= \frac{ M }{ E  \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
 			            \end{split}
 		            \end{equation}
 		      \item Based on the same reason,
 		            \begin{equation}
 			            \begin{split}
 				            \bigg| \frac{ \partial^2 y }{ \partial x^2 } \bigg| &= \frac{ M_z }{ E I_z } \\
-				            &= \frac{ M(x) }{ E \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)}.
+				            &= \frac{ M }{ E \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)}.
 			            \end{split}
 		            \end{equation}
 	      \end{enumerate}
@@ -270,11 +253,16 @@ If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ i
 	      \end{align}
 	      So
 	      \begin{align}
-		      | \sigma_y | & = E y \bigg| \frac{ \partial^2 y }{ \partial x^2 } \bigg| = y \frac{ M(x) }{ \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)},        \\
-		      | \sigma_z | & = E z \bigg| \frac{ \partial^2 z }{ \partial  x^2} \bigg| = z \frac{ M(x) }{ \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
+		      | \sigma_y | & = E y \bigg| \frac{ \partial^2 y }{ \partial x^2 } \bigg| = y \frac{ M }{ \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)},        \\
+		      | \sigma_z | & = E z \bigg| \frac{ \partial^2 z }{ \partial  x^2} \bigg| = z \frac{ M }{ \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
 	      \end{align}
-	      \emph{Ceteris paribus},
-	      the maximum values of $\sigma_y$ and $\sigma_z$ reach when $M(x) = M_\text{max} = \frac{ P L }{ 4 }$.
+	      The maxima $|\sigma_y|$ and $|\sigma_z|$ reach when $|y|$ and $|z|$ are at their maxima.
+	      Since the neutral axis must be at the midpoint of the beam,
+	      $-\frac{ t }{ 2 } \le y \le \frac{ t }{ 2 }$, $-\frac{ W }{ 2 } \le z \le \frac{ W }{ 2 }$. Thus,
+	      \begin{align}
+	      | \sigma_y |_\text{max} & = \frac{ t }{ 2 } \frac{ M }{ \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)},        \\
+	      | \sigma_z |_\text{max} & = \frac{ W }{ 2 } \frac{ M }{ \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
+	      \end{align}
 \end{enumerate}
 
 % \bibliographystyle{unsrt}

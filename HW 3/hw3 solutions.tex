@@ -15,6 +15,7 @@
 \usepackage{booktabs}
 \usepackage{bm}
 \usepackage[autostyle]{csquotes}
+\usepackage{xcolor}
 
 \titleformat{\subsection}
   {\normalfont\large\bfseries}{}{0em}{}
@@ -35,9 +36,9 @@
 
 \tableofcontents
 \listoffigures
-\listoftables
 
 \section{Problems}
+{\color{red} \textbf{Notice:} All updated contents will be colored in red!}
 \subsection{2.1}
 Consider a solid cylinder, radius $R$, length $l$, density $\rho$ standing up on its end,
 so that its total height (in $x_3$) above the pavement is $l$. Assume normal stresses only.
@@ -97,7 +98,7 @@ We can compute the body torque using
 \end{equation}
 Since
 \begin{equation}
-	\bm{B} = \mu_{0} \bm{M},
+	{\color{red} \bm{B} = \mu_{0} (\bm{H} + \bm{M}) \approx \mu_{0} \bm{H},}
 \end{equation}
 And the magnetic field, $\bm{B}$, is initially orthogonal to the magnetization, $\bm{M}$,
 of the sphere, the magnitude of $\bm{G}$ is

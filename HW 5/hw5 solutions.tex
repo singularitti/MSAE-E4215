@@ -1,0 +1,327 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref} % Uso de links
+% \usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+% \usepackage{enumerate}
+\usepackage{titlesec}
+% \usepackage{booktabs}
+% \usepackage{bm}
+\usepackage{miller}
+\usepackage{datetime}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{}{0em}{}
+  
+\settimeformat{hhmmsstime}
+
+\setlength{\parindent}{0em}
+
+%\DeclareMathOperator{\tr}{tr}
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Mechanical Properties of Materials (MSAE 4215), Spring 2019\\ Homework 4 Solutions}
+\author{Qi Zhang}
+\date{\today, \currenttime}
+
+\maketitle
+
+\tableofcontents
+
+\section{Problems}
+Please track the time above to see whether this file is updated.
+
+\subsection{5.1}
+Derive a relationship for the p-wave modulus $M$ in terms of the Young's modulus $E$ and Poisson ratio $\nu$.
+
+\textbf{Solutions:}
+
+We assume applying normal stresses $\sigma_{11}$, $\sigma_{22}$, and $\sigma_{33}$, which result in $\varepsilon_{11}$,
+$\varepsilon_{22}$ and $\varepsilon_{33}$.
+The stresses are chosen that their effects cancel each other, so
+$2$ of the $\varepsilon$'s can be set to $0$ (by definition). Here we assume $\varepsilon_{22} = \varepsilon_{33} = 0$.
+
+Write down above assumptions, the strains in $3$ directions are
+\begin{align}
+	\varepsilon_{11} & = \frac{\sigma_{11}}{E} - \nu \bigg( \frac{ \sigma_{22} }{ E } + \frac{ \sigma_{33} }{ E } \bigg), \label{eq:e11} \\
+	0                & = \frac{\sigma_{22}}{E} - \nu \bigg( \frac{ \sigma_{11} }{ E } + \frac{ \sigma_{33} }{ E } \bigg), \label{eq:e22} \\
+	0                & = \frac{\sigma_{33}}{E} - \nu \bigg( \frac{ \sigma_{11} }{ E } + \frac{ \sigma_{22} }{ E } \bigg). \label{eq:e33}
+\end{align}
+From $\eqref{eq:e22}$ we have
+\begin{equation}\label{eq:s111}
+	\sigma_{11} = \frac{ \sigma_{22} }{ \nu } - \sigma_{33}.
+\end{equation}
+From $\eqref{eq:e33}$ we have
+\begin{equation}\label{eq:s112}
+	\sigma_{11} = \frac{\sigma_{33}}{\nu} - \sigma_{22}.
+\end{equation}
+Combine $\eqref{eq:s111}$ and $\eqref{eq:s112}$ we have
+\begin{equation}
+	\sigma_{22} = \sigma_{33} = \frac{\nu}{1 - \nu} \sigma_{11}.
+\end{equation}
+Substitute above into $\eqref{eq:e11}$ we have
+\begin{equation}
+	\sigma_{11} = M \varepsilon_{11} = E \frac{1 - \nu}{1 - \nu - 2\nu^2} \varepsilon_{11}.
+\end{equation}
+So
+\begin{equation}
+	M = E \frac{1 - \nu}{1 - \nu - 2\nu^2}.
+\end{equation}
+
+\subsection{5.2}
+Under what circumstances can the (volumetric) thermal expansion coefficient $\alpha$ be calculated from a single measurement of linear thermal expansion $\delta l/l$?
+
+\textbf{Solutions:}
+
+When the material is isotropic.
+\begin{equation}
+	\frac{ \delta l_i }{ l_i } \equiv \epsilon_1 = \epsilon_2 = \epsilon_3, \text{ where } i = 1, 2, 3.
+\end{equation}
+The dilation is
+\begin{equation}
+	\Delta = \frac{\Delta V}{V} = \epsilon_1 + \epsilon_2 + \epsilon_3 = 3 \epsilon.
+\end{equation}
+The volumetric thermal expansion coefficient is
+\begin{equation}
+	\alpha = \frac{1}{V} \bigg( \frac{\partial V}{\partial T} \bigg)_P = \bigg( \frac{ \Delta }{ \Delta T } \bigg)_P = 3 \bigg( \frac{ \epsilon }{ \Delta T } \bigg)_P.
+\end{equation}
+
+\subsection{5.3}
+Gold has a Debye temperature of $\theta\sim\textrm{162 K}$, a Young's modulus of $E=\textrm{79 GPa}$, and a Poisson ratio of $\nu=0.43$.
+Estimate its thermal expansion coefficient, making a reasonable assumption about $\gamma$.
+
+\textbf{Solutions:}
+
+According to \url{http://webelements.com/gold/crystal_structure.html}, the structure of gold crystal is FCC,
+the cell parameter $a$ is \SI{0.4079}{\nano\meter}.
+
+Because the Debye temperature of gold is low, at room temperature, gold is already under classical
+limit. That is, the volumetric specific heat is
+\begin{equation}
+	C_V = 3 N k_B,
+\end{equation}
+where $N$ is the number of atoms in gold.
+
+The thermal expansion coefficient is
+\begin{equation}
+	\alpha = \beta\gamma\frac{ C_V }{ V } = 3 k_B \beta\gamma\frac{ N }{ V } = 12 k_B \beta\gamma \frac{ 1 }{ a^3 },
+\end{equation}
+where $N = 4$, $V = a^3$ for an FCC cell.
+We know from notes
+\begin{equation}
+	\beta = \frac{ 1 }{ K } = \frac{ 3 (1 - 2\nu) }{ E }.
+\end{equation}
+Here we just assume the Grüneisen parameter $\gamma$ of gold is $1$.
+So
+\begin{equation}
+	\alpha = 36 k_B \frac{1 - 2\nu}{ E } \frac{ 1 }{ a^3 } \approx \SI{1.297e-5}{\per\kelvin},
+\end{equation}
+where $k_B = \SI{1.38e-23}{\joule\per\kelvin}$.
+
+Well below \SI{162}{\kelvin}, under low-temperature limit,
+\begin{equation}
+	C_V =  N \frac{ 12 \pi^4 }{ 5 } k_B \bigg( \frac{ T }{ \theta } \bigg)^3,
+\end{equation}
+so
+\begin{equation}
+	\alpha = \frac{ 3 (1 - 2\nu) }{ E } \times N \frac{ 12 \pi^4 }{ 5 } k_B \bigg( \frac{ T }{ \theta } \bigg)^3 \frac{ 1 }{ a^3 }
+	= T^3 \times \SI{2.38e-10}{\per\kelvin}.
+\end{equation}
+
+\subsection{5.4}
+Derive an approximate expression for the Grüneisen parameter in terms of
+anharmonicity $s$ and equilibrium interatomic spacing $d_0$ of the bonds, using the diatomic model.
+({\it Hint:} how do the vibrational frequency and interatomic spacing change with temperature?)
+You can assume the solid is isotropic and that the changes are small
+(i.e. Taylor expand quantities where relevant.)  Use your results for Cu$_2$ from HW 1 to estimate
+$\gamma$ in Cu. (The experimental value is $1.9$.)
+
+\textbf{Solutions:}
+
+For an isotropic material, using the result from question $5.2$,
+\begin{equation}
+	\alpha_V = \frac{ 1 }{ V } \Big( \frac{\partial V}{\partial T} \Big)_P = \frac{\partial \ln V}{\partial T} = 3 \alpha_i = -3 s \frac{ k_B }{ d_0 f }, \text{ where } i = 1, 2, 3.
+\end{equation}
+
+Using equation $(1.21)$ and $(1.22)$ from notes,
+\begin{equation}
+	\frac{ \omega^2 }{ \omega_0^2 } = 1 - s^2 \frac{ 2 k_B T }{ f },
+\end{equation}
+thus
+\begin{equation}
+	\frac{ \omega^2 }{ \omega_0^2 } = 1 + \frac{ 2 }{ 3 } \alpha d_0 s T.
+\end{equation}
+Therefore,
+\begin{equation}
+	\begin{split}
+		\omega &= \omega_0 \sqrt{1 + \frac{ 2 }{ 3 } \alpha d_0 s T} \\
+		&\approx \omega_0 \bigg( 1 + \frac{ 1 }{ 3 } \alpha d_0 s T \bigg).
+	\end{split}
+\end{equation}
+since
+\begin{equation}
+	\sqrt{1 + x} \approx 1 + \frac{1}{2} x
+\end{equation}
+when $0 < x \ll 1$.
+So
+\begin{equation}
+	\ln \omega = \ln \omega_0 + \ln \bigg( 1 + \frac{ 1 }{ 3 } \alpha d_0 s T \bigg) \approx \ln \omega_0 + \frac{ 1 }{ 3 } \alpha d_0 s T
+\end{equation}
+since
+\begin{equation}
+	\ln (1 + x) \approx x
+\end{equation}
+when $0 < x \ll 1$.
+Thus,
+\begin{equation}
+	\Big( \frac{ \partial \ln \omega }{ \partial T } \Big)_P = \frac{ 1 }{ 3 } \alpha d_0 s.
+\end{equation}
+According to calculus,
+\begin{equation}
+	\Big( \frac{ \partial X }{ \partial Y } \Big)_{ Z } = \frac{ \Big( \frac{ \partial X }{ \partial W } \Big)_{ Z } }{ \Big( \frac{ \partial Y }{ \partial W } \Big)_{ Z } },
+\end{equation}
+thus
+\begin{equation}
+	\begin{split}
+		\gamma &= -\frac{ \partial \ln \omega }{ \partial \ln V } \\
+		&= -\frac{ \Big( \frac{ \partial \ln \omega }{ \partial T } \Big)_P }{ \Big( \frac{ \partial \ln V }{ \partial T } \Big)_P } \\
+		&= -\frac{ \frac{ 1 }{ 3 } \alpha d_0 s }{ \alpha } \\
+		&= -\frac{ d_0 s }{ 3 }.
+	\end{split}
+\end{equation}
+From HW 1, $s = \SI{-2.040e10}{\per\meter}$, $d_0 = \SI{2.09e-10}{\meter}$, so
+\begin{equation}
+	\gamma = 1.4212.
+\end{equation}
+
+
+\subsection{6.1}
+Determine an expression for the bulk modulus $K$ of a cubic crystal in terms of the matrix stiffnesses $c_{ij}$.
+You can assume that the normal strain axes $\epsilon_i$ are along the unit cell axes.
+
+\textbf{Solutions:}
+
+$\beta$, the isothermal compressibility is defined as
+\begin{equation}
+	\beta = \frac{ 1 }{ K_T } = -\frac{ 1 }{ V }\Big( \frac{ \partial V }{ \partial P } \Big)_T
+	= -\Big( \frac{ \Delta }{ \partial P } \Big)_T.
+\end{equation}
+
+The dilation, $\Delta$, is defined as,
+\begin{equation}
+	\Delta = \varepsilon_{11} + \varepsilon_{22} + \varepsilon_{33} = \epsilon_1 + \epsilon_2 + \epsilon_3.
+\end{equation}
+For a well-defined stress state, assuming that the normal strain axes $\epsilon_i$ are along the unit cell axes, we can express the strains
+in terms of the compliances, for a cubic crystal, as
+\begin{equation}
+	\begin{bmatrix}
+		\epsilon_1 \\
+		\epsilon_2 \\
+		\epsilon_3 \\
+		\epsilon_4 \\
+		\epsilon_5 \\
+		\epsilon_6
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		s_{11} & s_{12} & s_{12} & 0      & 0      & 0      \\
+		s_{12} & s_{11} & s_{12} & 0      & 0      & 0      \\
+		s_{12} & s_{12} & s_{11} & 0      & 0      & 0      \\
+		0      & 0      & 0      & s_{44} & 0      & 0      \\
+		0      & 0      & 0      & 0      & s_{44} & 0      \\
+		0      & 0      & 0      & 0      & 0      & s_{44}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\sigma_1 \\
+		\sigma_2 \\
+		\sigma_3 \\
+		\sigma_4 \\
+		\sigma_5 \\
+		\sigma_6
+	\end{bmatrix}.
+\end{equation}
+Exerting a hydrostatic stress, $\sigma_1 = \sigma_2 = \sigma_3 = -P$,
+\begin{equation}
+	\begin{bmatrix}
+		\epsilon_1 \\
+		\epsilon_2 \\
+		\epsilon_3 \\
+		\epsilon_4 \\
+		\epsilon_5 \\
+		\epsilon_6
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		s_{11} & s_{12} & s_{12} & 0      & 0      & 0      \\
+		s_{12} & s_{11} & s_{12} & 0      & 0      & 0      \\
+		s_{12} & s_{12} & s_{11} & 0      & 0      & 0      \\
+		0      & 0      & 0      & s_{44} & 0      & 0      \\
+		0      & 0      & 0      & 0      & s_{44} & 0      \\
+		0      & 0      & 0      & 0      & 0      & s_{44}
+	\end{bmatrix}
+	\begin{bmatrix}
+		-P \\
+		-P \\
+		-P \\
+		0  \\
+		0  \\
+		0
+	\end{bmatrix},
+\end{equation}
+then
+\begin{equation}
+	\epsilon_1 = \epsilon_2 = \epsilon_3 = -P (s_{11} + 2 s_{12}).
+\end{equation}
+So
+\begin{equation}
+	\Delta = -3P (s_{11} + 2 s_{12}).
+\end{equation}
+Therefore,
+\begin{equation}
+	\beta = -\frac{ \Delta }{ \partial P } = 3(s_{11} + 2 s_{12}),
+\end{equation}
+and
+\begin{equation}
+	K = \frac{ 1 }{ \beta } = \frac{ 1 }{ 3(s_{11} + 2 s_{12}) }.
+\end{equation}
+
+Using $(6.106)$ and $(6.107)$ from notes,
+\begin{align}
+	s_{11} & = \frac{c_{11}+c_{12}}{(c_{11} - c_{12})(c_{11}+2c_{12})}, \\
+	s_{12} & = -\frac{c_{12}}{(c_{11} - c_{12})(c_{11}+2c_{12})},
+\end{align}
+we have
+\begin{equation}
+	K = \frac{ c_{11} + 2 c_{12} }{ 3 }.
+\end{equation}
+
+\subsection{6.2}
+Using the Python function \texttt{sprime} distributed in class, plot the Young's modulus $s'_{1111}$ for Cu for a full rotation of stress and strain axes through
+$2\pi$ in the \hkl(100) and \hkl(111) planes.
+How do your plots obey Neumann's principle?
+
+\textbf{Solutions:}
+
+See the associated IPython notebook, or the PDF file. Thanks to Michael Carter's contribution.
+
+
+% \bibliographystyle{unsrt}
+% \bibliography{ref}
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

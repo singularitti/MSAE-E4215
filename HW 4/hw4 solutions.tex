@@ -204,14 +204,17 @@ If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ i
 	      \begin{figure}[h]
 		      \centering
 		      \includegraphics[width=0.6\linewidth]{images/support}
-		      \caption{Shear and moment diagram for a simply supported beam with a concentrated load at mid-span. Taken from \url{https://en.wikipedia.org/wiki/Bending_moment}.}
+		      \caption{Schematic plot.}
 		      \label{fig:support}
 	      \end{figure}
-	      For simple support, there is no shear force.
-	      Zero shear $\sigma_{xy}$ implies constant bending moment $M_z$ throughout the beam, denoted as
+	      For simple support, the heights $y(0)$, $y(L)$ are constrained to $0$.
+	      The shear $\sigma_{yx}$ through the beam is assumed to be $0$.
+	      There are only normal (point) stresses $\sigma_{yy}$ at both ends. (The end faces can rotate.)
+	      Zero $\sigma_{yx}$ implies constant bending moment $M_z$ throughout the beam, denoted as
 	      $M$ here. (This situation is known as ``pure bending".)
 	      It is the same for $z$ direction loading by symmetry, so $M_y = M$.
-	      
+	      Here we let $M$ be equal to the moment of the three-point bend $\dfrac{ P L }{ 4 }$. The derivation can be found
+	      on \url{https://www.youtube.com/watch?v=NjBG2jCROD4}.
 
 	\item For Young's modulus $E$, what will be the curvature of the beam if the load is placed in
 	      \begin{enumerate}[(b1)]
@@ -226,14 +229,14 @@ If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ i
 		            \begin{equation}
 			            \begin{split}
 				            \bigg| \frac{ \partial^2 z }{ \partial  x^2} \bigg| &= \frac{ M_y }{ E I_y }\\
-				            &= \frac{ M }{ E  \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
+				            &= \frac{ 1 }{ E  \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)} \frac{ P L }{ 4 }.
 			            \end{split}
 		            \end{equation}
 		      \item Based on the same reason,
 		            \begin{equation}
 			            \begin{split}
 				            \bigg| \frac{ \partial^2 y }{ \partial x^2 } \bigg| &= \frac{ M_z }{ E I_z } \\
-				            &= \frac{ M }{ E \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)}.
+				            &= \frac{ 1 }{ E \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)} \frac{ P L }{ 4 }.
 			            \end{split}
 		            \end{equation}
 	      \end{enumerate}
@@ -253,15 +256,15 @@ If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ i
 	      \end{align}
 	      So
 	      \begin{align}
-		      | \sigma_y | & = E y \bigg| \frac{ \partial^2 y }{ \partial x^2 } \bigg| = y \frac{ M }{ \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)},        \\
-		      | \sigma_z | & = E z \bigg| \frac{ \partial^2 z }{ \partial  x^2} \bigg| = z \frac{ M }{ \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
+		      | \sigma_y | & = E y \bigg| \frac{ \partial^2 y }{ \partial x^2 } \bigg| = y \frac{ 1 }{ \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)} \frac{ P L }{ 4 },        \\
+		      | \sigma_z | & = E z \bigg| \frac{ \partial^2 z }{ \partial  x^2} \bigg| = z \frac{ 1 }{ \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)} \frac{ P L }{ 4 }.
 	      \end{align}
 	      The maxima $|\sigma_y|$ and $|\sigma_z|$ reach when $|y|$ and $|z|$ are at their maxima.
 	      Since the neutral axis must be at the midpoint of the beam,
 	      $-\frac{ t }{ 2 } \le y \le \frac{ t }{ 2 }$, $-\frac{ W }{ 2 } \le z \le \frac{ W }{ 2 }$. Thus,
 	      \begin{align}
-	      | \sigma_y |_\text{max} & = \frac{ t }{ 2 } \frac{ M }{ \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)},        \\
-	      | \sigma_z |_\text{max} & = \frac{ W }{ 2 } \frac{ M }{ \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)}.
+		      | \sigma_y |_\text{max} & = \frac{ t }{ 2 } \frac{ 1 }{ \big( \frac{t^3 W}{6} + \frac{4 t W^3}{3} \big)} \frac{ P L }{ 4 },        \\
+		      | \sigma_z |_\text{max} & = \frac{ W }{ 2 } \frac{ 1 }{ \big( t \frac{ W^3 }{ 6 } + W \frac{ t^3 }{ 12 } \big)} \frac{ P L }{ 4 }.
 	      \end{align}
 \end{enumerate}
 

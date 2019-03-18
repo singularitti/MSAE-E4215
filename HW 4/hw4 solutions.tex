@@ -14,6 +14,7 @@
 \usepackage{titlesec}
 \usepackage{booktabs}
 \usepackage{bm}
+\usepackage{xcolor}
 
 \titleformat{\subsection}
   {\normalfont\large\bfseries}{}{0em}{}
@@ -39,6 +40,12 @@
 \listoftables
 
 \section{Problems}
+{\color{red} \textbf{Update}:
+\begin{itemize}
+	\item Remove \textit{parallel axis theorem} in question 2 because it is not required.
+	\item Update solution to question 3.
+\end{itemize}}
+
 \subsection{4.1}
 To monitor strain, it is possible to use optical marks (fiducials) and keep track of them in a
 microscope during an experiment. Imagine that there are two fiducials $A$, $B$, separated in $x$ and $y$
@@ -163,38 +170,6 @@ And
 	\end{split}
 \end{equation}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.7\linewidth]{images/I-beam-2}
-	\caption{Place an axis $z'$ at $\big(0, \frac{ W }{ 2 }, 0 \big)$.}
-	\label{fig:i-beam-2}
-\end{figure}
-Another way of solving $I_z$:
-If we place a $z'$ axis at $\big(0, \frac{ W }{ 2 }, 0 \big)$ (parallel to the $z$ axis), as figure \ref{fig:i-beam-2} shows,
-we can solve $I_{z'}$ by
-\begin{equation}
-	\begin{split}
-		I_{z'} &= 2 \bigg(\frac{I_\text{mid}}{2} + I_\text{end} \bigg) \\
-		&= 2 \bigg(
-		\int_{0}^{\frac{ W }{ 2 }} dy \, y^2 \int_{-\frac{ t }{ 2 }}^{\frac{ t }{ 2 }} dz
-		+ \int_{\frac{ W }{ 2 } - \frac{ t }{ 2 }}^{\frac{ W }{ 2 } + \frac{ t }{ 2 }} dy \, y^2 \int_{-\frac{ W }{ 2 }}^{\frac{ W }{ 2 }} dz
-		\bigg) \\
-		&= \frac{1}{12} (2 t^3 W+7 t W^3),
-	\end{split}
-\end{equation}
-where the leading $2$ is because of symmetry. And we minus all the $y$-coordinates by $\frac{ W }{ 2 }$ here.
-
-So the area moments of inertia with respect to $z$ axis is
-\begin{equation}
-	\begin{split}
-		I_z &= I_z' + A_\text{I-beam} l^2 \\
-		&= \frac{1}{12} (2 t^3 W+7 t W^3) + (3 W t) \times \bigg( \frac{ W }{ 2 } \bigg)^2 \\
-		&= \frac{t^3 W}{6} + \frac{4 t W^3}{3},
-	\end{split}
-\end{equation}
-where $l = \frac{ W }{ 2 }$ is the distance between $z$ and $z'$ axes, and $A_\text{I-beam}$ is the area of the beam.
-This is called \emph{parallel axis theorem}.
-
 \subsection{3}
 If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ is placed in the center of the beam at $x=L/2$,
 \begin{enumerate}[(a)]
@@ -213,8 +188,7 @@ If the I-beam is simply supported at both ends at $x=0$, $x=L$, and a load $P$ i
 	      Zero $\sigma_{yx}$ implies constant bending moment $M_z$ throughout the beam, denoted as
 	      $M$ here. (This situation is known as ``pure bending".)
 	      It is the same for $z$ direction loading by symmetry, so $M_y = M$.
-	      Here we let $M$ be equal to the moment of the three-point bend $\dfrac{ P L }{ 4 }$. The derivation can be found
-	      on \url{https://www.youtube.com/watch?v=NjBG2jCROD4}.
+	      Here we let $M$ be equal to the moment of the three-point bend $\dfrac{ P L }{ 4 }$.
 
 	\item For Young's modulus $E$, what will be the curvature of the beam if the load is placed in
 	      \begin{enumerate}[(b1)]

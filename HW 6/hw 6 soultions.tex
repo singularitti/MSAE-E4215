@@ -1,0 +1,94 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref} % Uso de links
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+% \usepackage{enumerate}
+\usepackage{titlesec}
+% \usepackage{booktabs}
+% \usepackage{bm}
+\usepackage{miller}
+\usepackage{datetime}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{}{0em}{}
+
+\settimeformat{hhmmsstime}
+
+\setlength{\parindent}{0em}
+
+%\DeclareMathOperator{\tr}{tr}
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Mechanical Properties of Materials (MSAE 4215), Spring 2019\\ Homework 5 Solutions}
+\author{Qi Zhang}
+\date{\today, \currenttime}
+
+\maketitle
+
+\tableofcontents
+
+\section{Problems}
+Please track the time above to see whether this file is updated.
+
+\subsection{6.3}
+Using the Python function \texttt{sprime}, show that an average of $100$
+random orientations for the stress/strain axis $l_i$ converges to the Reuss average.
+
+\textit{Hint:} use the function
+\texttt{2*np.pi*np.random.random((100,2))} to create random
+values for spherical angles $\theta$, $\phi$ and generate $l_i$ from these angles.
+
+\textbf{Solutions:}
+
+
+\section{6.4}
+Derive an expression for the p-wave modulus $M$ for different directions
+of uniaxial strain defined by $l_i$.
+
+\textbf{Solutions:}
+
+
+\section{6.5}
+Modify the Python function to calculate the p-wave modulus,
+according to your result in the last problem.  Plot the modulus for a
+full rotation of $2\pi$ in the \hkl(100) and \hkl(111) planes, and be sure to show that
+your computed result agrees with analytic results for some low-index orientations.
+
+\textbf{Solutions:}
+
+
+\section{6.6}
+Using the Landolt--Bornstein tables values, calculate the Voigt, Reuss,
+and Voigt--Reuss--Hill average isotropic Young's moduls $E$ for \ce{Al}.
+
+\textbf{Solutions:}
+
+
+\section{6.7}
+Derive the Young's modulus for the Reuss average of
+a \hkl[111]-fiber-textured polycrystalline cubic solid.
+
+\textbf{Solutions:}
+
+
+% \bibliographystyle{unsrt}
+% \bibliography{ref}
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

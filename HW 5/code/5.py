@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import numpy as np
-import matplotlib.pyplot as plt
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 plt.style.use("classic")
 my_path = os.path.abspath(__file__ + "/../../")
@@ -29,7 +30,8 @@ def c_prime(n, u, theta):
     l = np.cos(theta) * u_normalized + np.sin(theta) * v  # l vector
     v_prime = np.cross(n_normalized, l)
 
-    old_coords = np.array([[1., 0., 0.], [0, 1., 0], [0, 0, 1.]])  # Cartesian coordinates
+    # Cartesian coordinates
+    old_coords = np.array([[1., 0., 0.], [0, 1., 0], [0, 0, 1.]])
     new_coords = np.array([l, v_prime, n_normalized])
 
     a = np.dot(new_coords, old_coords)  # Coordinate transformation
@@ -76,7 +78,7 @@ def draw_on_plane(n, u):
     ax.set_ylim((min(s) - 0.5, max(s) + 0.5))
     ax.set_xlabel("Angle $\\theta$", size=16)
     ax.set_ylabel("Stiffness $c'_{1111}$", size=16)
-    ax.set_title("On " + str(n) + " plane", fontsize=18)
+    ax.set_title("On " + str(tuple(n)) + " plane", fontsize=18)
     new_label = np.array(np.linspace(0, 2 * np.pi, 5))
     ax.set_xticks(new_label)
     ax.set_xticklabels(["$0$", "$\\frac{\pi}{2}$",
@@ -85,6 +87,8 @@ def draw_on_plane(n, u):
 
 
 # plt.show(draw_on_plane(np.array([1, 1, 0]), np.array([-1, 1, 0])))
-draw_on_plane(np.array([1, 0, 0]), np.array([0, 1, 0])).savefig(my_path + "/images/pro_5_1.pdf")  # (1 1 0) plane
-draw_on_plane(np.array(np.array([1, 1, 1])), np.array([1, -1, 0])).savefig(
-    my_path + "/images/pro_5_2.pdf")  # (1 1 1) plane
+plt.show(draw_on_plane(np.array([1, 0, 0]), np.array([0, 1, 0])))
+plt.show(draw_on_plane(np.array(np.array([1, 1, 1])), np.array([1, -1, 0])))
+# draw_on_plane(np.array([1, 0, 0]), np.array([0, 1, 0])).savefig(my_path + "/images/pro_5_1.pdf")  # (1 1 0) plane
+# draw_on_plane(np.array(np.array([1, 1, 1])), np.array([1, -1, 0])).savefig(
+#     my_path + "/images/pro_5_2.pdf")  # (1 1 1) plane

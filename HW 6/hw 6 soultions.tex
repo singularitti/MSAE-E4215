@@ -10,10 +10,11 @@
 \usepackage{hyperref} % Uso de links
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
-% \usepackage{enumerate}
 \usepackage{titlesec}
-% \usepackage{booktabs}
-% \usepackage{bm}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{bm}
 \usepackage{miller}
 \usepackage{datetime}
 
@@ -39,6 +40,7 @@
 \maketitle
 
 \tableofcontents
+\listoftables
 
 \section{Problems}
 Please track the time above to see whether this file is updated.
@@ -53,15 +55,105 @@ values for spherical angles $\theta$, $\phi$ and generate $l_i$ from these angle
 
 \textbf{Solutions:}
 
+The analytical result of the Reuss average is given by equation $(6.120)$:
+\begin{equation}
+  \bar{s}_{11} = \frac{ 3 }{ 5 } s_{11} + \frac{ 2 }{ 5 } s_{12} + \frac{ 1 }{ 5 } s_{44}
+  = \SI{9.14}{\per\tera\pascal}.
+\end{equation}
+What we need to do is to compare this value with the computer-program-sampled-average.
+The rest of this problem is solved on the IPython notebook.
 
-\section{6.4}
+
+\subsection{6.4}\label{ssec:64}
 Derive an expression for the p-wave modulus $M$ for different directions
 of uniaxial strain defined by $l_i$.
 
 \textbf{Solutions:}
 
+The p-wave modulus is defined as the ratio of longitudinal stress to longitudinal
+strain for a uniaxial strain state. Quantitatively, we can state this as
+$\sigma_{11} = M \varepsilon_{11}$, while $\varepsilon_{22} = \varepsilon_{33} = 0$.
+Since we are dealing with a well defined
+strain state, $\sigma_{ij} = c_{ijkl} \varepsilon_{kl}$, we can write:
+\begin{equation}
+  \sigma_{11} = c_{1111} \varepsilon_{11}.
+\end{equation}
+Therefore,
+\begin{equation}
+  M \equiv c_{1111} = c_{11}.
+\end{equation}
+Now to find the p-wave modulus for different directions of uniaxial strain we can
+follow the procedure outlined in notes.
+As a side-note, the final answer is given already in equation $(6.108)$.
 
-\section{6.5}
+Recall the tensor transformation for a general fourth-rank tensor:
+\begin{equation}
+  T_{ijkl}' = a_{im} a_{jn} a_{ko} a_{lp} T_{mnop}.
+\end{equation}
+Rewriting this for the p-wave modulus term, $c_{1111}$, in arbitrary direction:
+\begin{equation}
+  c_{1111}' = a_{1m} a_{1n} a_{1o} a_{1p} c_{mnop}.
+\end{equation}
+Recall from Chapter $3$, $\mathrm{ a }$ is just a rotation matrix, written generically as:
+\begin{equation}
+  \mathrm{ a } =
+  \begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33}
+  \end{bmatrix}.
+\end{equation}
+Again as a reminder this matrix $\mathrm{ a }$,
+for a forward transformation, has elements $a_{ij}$ which represents the cosine of the angle
+between new axis $\hat{x}_i'$ and old axis $\hat{x}_j$.
+Thus,
+\begin{equation}
+  a_{ij} = \hat{x}_i' \cdot \hat{x}_j.
+\end{equation}
+
+Hence, $a_{1m}$ is merely the first row of the rotation matrix which relates one of the new axes,
+specifically $\hat{x}_1'$, to all three of the old axes, $\hat{x}_1$, $\hat{x}_2$, and $\hat{x}_3$.
+Now we define,
+\begin{equation}
+  l_i = a_{1i} = \hat{x}_1' \cdot \hat{x}_i, \text{ for } i = 1, 2, 3.
+\end{equation}
+Thus, $l_i$ is just the directional cosine between
+the new $\hat{x}_1'$ axis and the old $\hat{x}_i$ for $i = 1, 2, 3$.
+Why do we refer to this as a directional cosine?
+Simple, the definition of the dot product between two unit-vectors, whose norm are one,
+\begin{equation}
+  \| \hat{x}_i \| = 1,
+\end{equation}
+is
+\begin{equation}
+  \hat{x}_i' \cdot \hat{x}_j = \| \hat{x}_i' \| \| \hat{x}_j \| \cos \theta = \cos \theta,
+\end{equation}
+where $\theta$ is the angle between the two vectors.
+
+Then
+\begin{equation}
+  c_{1111}' = l_{m} l_{n} l_{o} l_{p} c_{mnop}.
+\end{equation}
+
+For a cubic material we only need to consider three types of terms for $c_{mnop}$.
+So
+\begin{equation}
+  c_{1111}' = (l_1^4 + l_2^4 + l_3^4) c_{11} + 2(l_1^2 l_2^2 + l_1^2 l_3^2 + l_2^2 l_3^2) c_{12} + 4(l_1^2 l_2^2 + l_1^2 l_3^2 + l_2^2 l_3^2) c_{44}.
+\end{equation}
+
+Defining
+\begin{equation}
+  Q = l_1^2 l_2^2 + l_1^2 l_3^2 + l_2^2 l_3^2,
+\end{equation}
+follow the same steps on notes, we have
+\begin{equation}
+  M = c_{1111}' = c_{11}' = c_{11} - 2(c_{11} - c_{12} - 2 c_{44}) Q.
+\end{equation}
+
+
+
+
+\subsection{6.5}
 Modify the Python function to calculate the p-wave modulus,
 according to your result in the last problem.  Plot the modulus for a
 full rotation of $2\pi$ in the \hkl(100) and \hkl(111) planes, and be sure to show that
@@ -69,20 +161,87 @@ your computed result agrees with analytic results for some low-index orientation
 
 \textbf{Solutions:}
 
+See the associated IPython notebook, or the PDF file. Thanks to Michael Carter's contribution.
+To compare the result with question \ref{tab:lbal}, compute several $Q(\theta)$ by hand.
 
-\section{6.6}
+\subsection{6.6}
 Using the Landolt--Bornstein tables values, calculate the Voigt, Reuss,
 and Voigt--Reuss--Hill average isotropic Young's moduls $E$ for \ce{Al}.
 
 \textbf{Solutions:}
 
+\begin{table}[h]
+  \centering
+  \caption{Landolt-Bornstein tables for \ce{Al}.}
+  \begin{tabular}{cccccccc}
+    \toprule
+    \multirow{2}[4]{*}{Element}  & $s_{11}$                                  & $s_{44}$ & $s_{12}$                              &  & $c_{11}$ & $c_{44}$ & $c_{12}$ \\
+    \cmidrule{2-4}\cmidrule{6-8} & \multicolumn{3}{c}{\si{\per\tera\pascal}} &          & \multicolumn{3}{c}{\si{\giga\pascal}}                                     \\
+    \midrule
+    \ce{Al}                      & 16                                        & 35.3     & -5.8                                  &  & 108      & 28.3     & 62       \\
+    $s(n=10)$                    & 0.5                                       & 0.2      & 0.3                                   &  & 2        & 0.2      & 2        \\
+    \bottomrule
+  \end{tabular}%
+  \label{tab:lbal}%
+\end{table}%
+The elastic constants from the Landolt-Bornstein tables for \ce{Al} are listed in table \ref{tab:lbal}.
 
-\section{6.7}
+
+So the Voigt-averaged Young's modulus $E_\text{V}$ is
+\begin{equation}
+  E_\text{V} = \frac{ \left( 0.4 (c_{11}-c_{12})+1.2 c_{44}\right)\left(c_{11}+2 c_{12}\right) }{ \left( 0.8 c_{11} + 1.2 c_{12} + 0.4 c_{44}\right) }
+  \approx \SI{70.58}{\giga\pascal}.
+\end{equation}
+
+The Reuss-averaged Young's modulus $E_\text{R}$ is
+\begin{equation}
+  E_\text{R} = \frac{5}{3 s_{11} + 2 s_{12} + s_{44}} \approx \SI{0.06974}{\tera\pascal} = \SI{69.74}{\giga\pascal}.
+\end{equation}
+
+The Voigt--Reuss--Hill-averaged Young's modulus $E_\text{VRH}$ is
+\begin{equation}
+  E_\text{VRH} = \frac{ E_{V} + E_{R} }{ 2 } = \SI{70.16}{\giga\pascal}.
+\end{equation}
+
+\subsection{6.7}
 Derive the Young's modulus for the Reuss average of
 a \hkl[111]-fiber-textured polycrystalline cubic solid.
 
 \textbf{Solutions:}
 
+Take any two orthogonal unit vectors on the plane perpendicular to \hkl[1 1 1],
+say, $\frac{ 1 }{ \sqrt{6} }\hkl[-1 -1 2]$ and $\frac{ 1 }{ \sqrt{2} }\hkl[-1 1 0]$.
+Compose a vector $\bm{l}$ which satisfies
+\begin{equation}
+  \bm{l} = \frac{ 1 }{ \sqrt{6} } \hkl[-1 -1 2] \sin \theta + \frac{ 1 }{ \sqrt{2} } \hkl[-1 1 0] \cos \theta =
+  \begin{bmatrix}
+    -\frac{ 1 }{ \sqrt{6} } \sin \theta - \frac{ 1 }{ \sqrt{2} } \cos \theta \\
+    -\frac{ 1 }{ \sqrt{6} } \sin \theta + \frac{ 1 }{ \sqrt{2} } \cos \theta \\
+    \frac{ 2 }{ \sqrt{6} } \sin \theta
+  \end{bmatrix}
+\end{equation}
+where $0 \leq \theta \leq 2 \pi$.
+Since
+\begin{equation}
+  s_{11}' = s_{11} - 2(s_{11} - s_{12} - \frac{ s_{44} }{ 2 }) Q,
+\end{equation}
+where
+\begin{equation}
+  Q = l_1^2 l_2^2 + l_1^2 l_3^2 + l_2^2 l_3^2 \equiv \frac{ 1 }{ 4 },
+\end{equation}
+so
+\begin{equation}
+  s_{11}' \equiv s_{11} - \frac{ 1 }{ 2 } \Big(s_{11} - s_{12} - \frac{ s_{44} }{ 2 }\Big)
+  = \frac{ 1 }{ 2 } \Big(s_{11} + s_{12} + \frac{ s_{44} }{ 2 }\Big).
+\end{equation}
+Since $s_{11}'$ is a constant, its average is just itself. Therefore,
+\begin{equation}
+  \bar{s}_{11}' = s_{11} = \frac{ 1 }{ 2 } \Big(s_{11} + s_{12} + \frac{ s_{44} }{ 2 }\Big).
+\end{equation}
+So its Young's modulus for the Reuss average is
+\begin{equation}
+  E = \frac{ 1 }{ \bar{s}_{11}' } = \frac{4}{2 s_{11} + 2 s_{12} + s_{44} }.
+\end{equation}
 
 % \bibliographystyle{unsrt}
 % \bibliography{ref}

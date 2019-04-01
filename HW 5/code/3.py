@@ -1,18 +1,12 @@
 #!/usr/bin/env python3
 
 import numpy as np
-import matplotlib.pyplot as plt
 
-plt.style.use("classic")
-
-sample = 100
-s = np.array([15, 13.3, -6.3])  # s11, s44, s12
-s11 = s[0]
-s12 = s[2]
-s44 = s[1]
+number_of_samples = 100
+s11, s44, s12 = 15, 13.3, -6.3  # s11, s44, s12
 
 
-def directional_factor(theta, phi):
+def Q(theta, phi):
     l1 = np.cos(phi) * np.sin(theta)
     l2 = np.sin(phi) * np.sin(theta)
     l3 = np.cos(theta)
@@ -20,11 +14,11 @@ def directional_factor(theta, phi):
 
 
 def s_average(theta, phi):
-    return s11 - 2 * (s11 - s12 - s44 / 2) * directional_factor(theta, phi)
+    return s11 - 2 * (s11 - s12 - s44 / 2) * Q(theta, phi)
 
 
-theta = np.pi * np.random.random(sample)
-phi = 2 * np.pi * np.random.random(sample)
+theta = np.pi * np.random.random(number_of_samples)
+phi = 2 * np.pi * np.random.random(number_of_samples)
 
 print(np.mean([np.mean([s_average(theta[i], phi[i])
-                        for i in range(sample)]) for i in range(100)]))
+                        for i in range(number_of_samples)]) for i in range(100)]))

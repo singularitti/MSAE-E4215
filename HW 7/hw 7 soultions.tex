@@ -1,0 +1,272 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref} % Uso de links
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{bm}
+\usepackage{miller}
+\usepackage{datetime}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{}{0em}{}
+
+\settimeformat{hhmmsstime}
+
+\setlength{\parindent}{0em}
+
+%\DeclareMathOperator{\tr}{tr}
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Mechanical Properties of Materials (MSAE 4215), Spring 2019\\ Homework 6 Solutions}
+\author{Qi Zhang}
+\date{\today, \currenttime}
+
+\maketitle
+
+\tableofcontents
+\listoftables
+
+\section{Problems}
+Please track the time above to see whether this file is updated.
+
+\subsection{7.3}
+Determine the mode profile and resonant frequencies for a bar which is \textit{clamped}
+at both ends, i.e. cannot be displaced in any direction, and fixed in both $x$ and $y$.
+
+\textbf{Solutions:}
+
+\subsection{7.4}
+An earthquake strikes the San Francisco Bay Area;
+how long does it take for the tremors to be felt in Los Angeles, \SI{600}{\kilo\meter} away?
+Assume that the elastic waves propagate as through bulk (not surface) rock with density
+of \SI{2.65}{\gram \per \cubic \centi \meter} and Young's modulus of \SI{10}{\giga\pascal}.
+Calculate for the $P-$ (primary) wave due to compression and the
+$S-$secondary wave due to shear, assuming a poisson ratio of $\nu= 0.25$.
+
+\textbf{Solutions:}
+
+\subsection{7.5}
+Compare longitudinal wave velocities in a single crystal of \ce{Ag} for elastic wave
+propagation along the \hkl[100] and \hkl[110] directions.  Is there a directional dependence of the velocity?
+Why or why not?
+
+\textbf{Solutions:}
+
+\subsection{8.1}
+Compare the effective Young's modulus for a $10\%$ volume fraction of hard material $A$ in a matrix of soft material $B$, $E_A=10 E_B$, in two geometries:
+\begin{itemize}
+  \item Fiber geometry (long axes of fibers along stress)
+  \item Plate geometry (composition modulation in direction of primary stress), neglecting Poisson contraction
+  \item Plate geometry (composition modulation in direction of primary stress), including Poisson contraction. Take $\nu_A= 0.3$, $\nu_B= 0.45$.
+\end{itemize}
+
+\textbf{Solutions:}
+\begin{itemize}
+  \item Using equation $(8.1)$,
+        \begin{equation}
+          E = v_A E_A + v_B E_B = 0.1 \times 10 E_B + 0.9 E_B = 1.9 E_B.
+        \end{equation}
+
+  \item Using equation $(8.2)$,
+        \begin{equation}
+          E = \frac{ 1 }{ \frac{ v_A }{ E_A } + \frac{ v_B }{ E_B } }
+          = \frac{ 100 }{ 91 } E_B.
+        \end{equation}
+
+  \item Using equation $(8.17)$,
+        \begin{equation}
+          E^{-1} = \frac{V_A}{E_A}+\frac{V_B}{E_B}- \frac{2 V_A V_B}{E_A E_B}\frac{\left(\nu_A E_B-\nu_B E_A\right)^2}{V_A E_A\left(1- \nu_B\right)+ V_B E_B\left(1 - \nu_A\right)}
+          \approx 0.64 / E_B,
+        \end{equation}
+        so $E = 1.5625 E_B$.
+\end{itemize}
+
+\subsection{8.2}
+Derive a relationship for the Young's modulus of plates in the $x_1 - x_2$ plane,
+$\sigma_1/\epsilon_1$ where the primary stress $\sigma_1$ is applied along one of
+the in-plane directions of the plate. Express your answer in terms of the volume
+fractions $V_A$, $V_B$ and isotropic elastic constants $E_A, E_B, \nu_A, \nu_B$.
+
+\textbf{Solutions:}
+
+
+\subsection{8.3}
+Consider a model of a viscoelastic solid in which a Maxwell element $(E_a, \eta)$ is in
+parallel (isostrain) with an elastic element $E_b$.
+Derive the equation of motion relating $\epsilon,\sigma,\dot{\epsilon},\dot{\sigma}$.
+Solve for the Young's modulus in the $t=0^+$ and $t=\infty$ limits, and plot
+the strain $\varepsilon$ as a function of time under a step stress.
+
+\textbf{Solutions:}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/Maxwell}
+  \caption{The Maxwell form of the standard linear solid.}
+  \label{fig:Maxwell}
+\end{figure}
+
+The stress and strain in the Maxwell element will be denoted by $\sigma_M$ and $\varepsilon_M$.
+The stress and strain in the elastic element will be referred to as $\sigma_b$ and $\varepsilon_b$.
+Since the Maxwell element is in parallel with the elastic element (isostrain):
+\begin{equation}
+  \varepsilon_M = \varepsilon_b = \varepsilon,
+\end{equation}
+where $\varepsilon$ is the total strain of the SLS.
+The strain in the Maxwell element is the sum of the strains in the spring and dashpot element, i.e.,
+$\varepsilon_a$ and $\varepsilon_d$, so
+\begin{equation}\label{eq:varepsilonall}
+  \varepsilon_a + \varepsilon_d = \varepsilon_b = \varepsilon.
+\end{equation}
+In the same time,
+\begin{equation}
+  \dot{\varepsilon}_a + \dot{\varepsilon}_d = \dot{\varepsilon}_b = \dot{\varepsilon}.
+\end{equation}
+The total stress for the overall system is the sum of the stresses in the individual branches:
+\begin{equation}\label{eq:sigmaall}
+  \sigma = \sigma_b + \sigma_M = E_b \varepsilon_b + \sigma_M = E_b \varepsilon + \sigma_M,
+\end{equation}
+where in the Maxwell element,
+\begin{equation}
+  \sigma_M = \sigma_a = \sigma_d.
+\end{equation}
+We assume
+\begin{align}\label{eq:sigmaM}
+  \sigma_a & = E_a \varepsilon_a,          \\
+  \sigma_d & = 3 \eta \dot{\varepsilon}_d.
+\end{align}
+And bring \eqref{eq:sigmaM} into \eqref{eq:varepsilonall},
+we get
+\begin{equation}
+  \varepsilon = \frac{ \sigma_a }{ E_a } + \varepsilon_d = \frac{ \sigma_M }{ E_a } + \varepsilon_d.
+\end{equation}
+Take derivative on both sides,
+\begin{equation}\label{eq:epdot}
+  \dot{\varepsilon} = \frac{ \dot{\sigma}_M }{ E_a } + \frac{ \sigma_M }{ 3 \eta }.
+\end{equation}
+Take \eqref{eq:sigmaall} into \eqref{eq:epdot},
+\begin{equation}\label{eq:beforesimplify}
+  \dot{\varepsilon} = \frac{ \dot{\sigma} - E_b \dot{\varepsilon} }{ E_a } + \frac{ \sigma - E_b \varepsilon }{ 3 \eta }.
+\end{equation}
+Simplify equation \eqref{eq:beforesimplify}, we get the equation of motion
+\begin{equation}\label{eq:maineq}
+  \begin{split}
+    \bigg( 1 + \frac{ E_b }{ E_a } \bigg) \dot{\varepsilon} + \frac{ E_b }{ 3 \eta } \varepsilon &= \frac{ \dot{\sigma} }{ E_a } + \frac{ \sigma }{ 3 \eta },\\
+    (E_a + E_b) \dot{\varepsilon} + \frac{ E_a E_b }{ 3 \eta } \varepsilon &= \dot{\sigma} + \frac{ E_a }{ 3 \eta } \sigma,\\
+    \dot{\varepsilon} + A \varepsilon &= B \dot{\sigma} + C \sigma,
+  \end{split}
+\end{equation}
+where $A = \dfrac{ E_a E_b }{ E_a + E_b } \dfrac{ 1 }{ 3 \eta }$, $B = \dfrac{ 1 }{ E_a + E_b }$, and $C = A / E_b$.
+
+Now let's solve this equation. You can skip this if not interested.
+We apply Laplace transform
+\begin{equation}
+  \mathcal{F}(s) = \mathcal{L}\{f(t)\} = \int_{0}^{\infty} e^{-s t} f(t) d t
+\end{equation}
+to \eqref{eq:maineq}. Since Laplace transform is a linear operator, i.e.,
+\begin{equation}
+  \mathcal{L}\{a f(t)+b g(t)\} = a F(s) + b G(s),
+\end{equation}
+we will have
+\begin{equation}\label{eq:lapexpand}
+  \mathcal{L}\{\dot{\varepsilon}\} + A \mathcal{L}\{\varepsilon\} = B \mathcal{L}\{\dot{\sigma}\} + C \mathcal{L}\{\sigma\}.
+\end{equation}
+Since $\sigma(t)$ is a step function $\sigma(t) = \sigma_0 H(t)$, with $H(t)$ be the Heaviside step function,
+\begin{equation}
+  \mathcal{L}\{\sigma\} = \frac{ \sigma_0 }{ s }.
+\end{equation}
+And since
+\begin{equation}\label{eq:lapdot}
+  \mathcal{L}\{\dot{f}(t)\} = s F(s)-f(0^{+}),
+\end{equation}
+here if $f(t)$ is bounded by
+\begin{equation}
+  | f(t) | = M e^{a t},
+\end{equation}
+where $M$ is a finite number, then \eqref{eq:lapdot} simplifies to
+\begin{equation}
+  \mathcal{L}\{\dot{f}(t)\} = s F(s) - f(0).
+\end{equation}
+Of course in real world, $\varepsilon$ and $\sigma$ are finite, so
+\begin{align}
+  \mathcal{L}\{\dot{\sigma}\}      & = s \frac{ \sigma_0 }{ s } - \sigma(0) = 0,      \\
+  \mathcal{L}\{\dot{\varepsilon}\} & = s \mathcal{L}\{\varepsilon\} - \varepsilon(0).
+\end{align}
+So \eqref{eq:lapexpand} simplifies to
+\begin{equation}
+  C \frac{ \sigma_0 }{ s } = s \mathcal{L}\{\varepsilon\} - \varepsilon(0) + A \mathcal{L}\{\varepsilon\},
+\end{equation}
+so
+\begin{equation}\label{eq:transformed}
+  \mathcal{L}\{\varepsilon\} = \frac{ C \frac{ \sigma_0 }{ s } + \varepsilon(0) }{ s + A }.
+\end{equation}
+Now what's $\varepsilon(0)$? Definitely it is a constant. Let's call it $\varepsilon_0$.
+
+So apply inverse Laplace transform to \eqref{eq:transformed}, we have
+\begin{equation}
+  \varepsilon(t) = \frac{(E_b \varepsilon_0-\sigma_0) e^{-\frac{E_a E_b t}{3 \eta (E_a + E_b)}}}{E_b}+\frac{\sigma_0}{E_b},
+\end{equation}
+where $E_b \varepsilon_0 \leq \sigma_0$ since $\sigma_M(0) \geq 0$.
+When $t \rightarrow \infty$, we can clearly see that
+\begin{equation}
+  \varepsilon(\infty) = \frac{\sigma_0}{E_b},
+\end{equation}
+as is expected.
+
+So
+\begin{equation}
+  E(t) = \frac{ \varepsilon(t) }{ \sigma_0 } = \frac{(E_b \varepsilon_0-\sigma_0) e^{-\frac{E_a E_b t}{3 \eta (E_a + E_b)}}}{E_b \sigma_0}+\frac{1}{E_b},
+\end{equation}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/8_3}
+  \caption{$\varepsilon(t)$, with different intial $\varepsilon_0$, where $E_a = 1$, $E_b = 3$, $\eta = 1$, $\sigma_0 = 10$.}
+  \label{fig:question_8_3}
+\end{figure}
+
+\subsection{8.4}
+The elongation of a cylinder of slightly viscoelastic material is found to be
+$1\%$ greater for a step stress $\sigma_0$ measured after \SI{1}{\day} compared with after \SI{100}{\femto\second}.
+If the viscoelasticity of the cylinder is dominated by a single defect
+with a single relaxation time, what will be the \emph{shortest} time for a spring made from this
+material set into free vibration to decay to $10\%$ of its initial amplitude,
+if measurements are taken for a full range of masses applied to the end of the spring?
+
+\textbf{Solutions:}
+
+\subsection{8.5}
+The notes on a piano span a range from \SI{27.5}{\hertz} to \SI{4186}{\hertz}.
+The A keys are tuned to \SI{440}{\hertz} for A4, with each octave doubling in frequency
+in the following sequence: 27.5, 55, 110, 220, 440, 880, 1760, 3520 Hz for A1-A8 on
+the keyboard.  Plot (using python) as a function of frequency over $A0-A7$ \emph{the sustain time}
+for a given note struck on the piano, defined as the time needed for the volume (square of amplitude)
+to decay to $1/e$ its initial value.  Use a logarithmic scale for the frequency. Make your estimate
+\begin{enumerate}[a)]
+  \item assuming that the $Q$ value for the oscillation is that for $A4$ as calculated in the lectures,
+  \item taking into account the frequency dependence of $Q$ expected for piano wire. Does the result seem reasonable?
+\end{enumerate}
+
+\textbf{Solutions:}
+
+% \bibliographystyle{unsrt}
+% \bibliography{ref}
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+
+\end{document}

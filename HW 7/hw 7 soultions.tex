@@ -39,6 +39,7 @@
 \maketitle
 
 \tableofcontents
+\listoffigures
 \listoftables
 
 \section{Problems}
@@ -55,10 +56,28 @@ An earthquake strikes the San Francisco Bay Area;
 how long does it take for the tremors to be felt in Los Angeles, \SI{600}{\kilo\meter} away?
 Assume that the elastic waves propagate as through bulk (not surface) rock with density
 of \SI{2.65}{\gram \per \cubic \centi \meter} and Young's modulus of \SI{10}{\giga\pascal}.
-Calculate for the $P-$ (primary) wave due to compression and the
-$S-$secondary wave due to shear, assuming a poisson ratio of $\nu= 0.25$.
+Calculate for the P- (primary) wave due to compression and the
+S- (secondary) wave due to shear, assuming a poisson ratio of $\nu= 0.25$.
 
 \textbf{Solutions:}
+The P-wave modulus is
+\begin{equation}
+  M = \frac{ E (1 - \nu) }{ 1 - \nu - 2 \nu^2 } = \SI{12}{\giga\pascal}.
+\end{equation}
+And the shear modulus is
+\begin{equation}
+  \mu = \frac{ E }{ 2 ( 1 + \nu ) } = \SI{4}{\giga\pascal}.
+\end{equation}
+So,
+\begin{align}
+  v_l = \sqrt{\frac{ M }{ \rho }}   & = \SI{2127.98}{\meter\per\second}, \\
+  v_t = \sqrt{\frac{ \mu }{ \rho }} & = \SI{1228.59}{\meter\per\second}.
+\end{align}
+Thus,
+\begin{align}
+  t_l & = \frac{ d }{ v_l } = \SI{281.96}{\second}, \\
+  t_t & = \frac{ d }{ v_t } = \SI{488.36}{\second}.
+\end{align}
 
 \subsection{7.5}
 Compare longitudinal wave velocities in a single crystal of \ce{Ag} for elastic wave
@@ -66,6 +85,33 @@ propagation along the \hkl[100] and \hkl[110] directions.  Is there a directiona
 Why or why not?
 
 \textbf{Solutions:}
+
+Solid \ce{Ag} has a face-centred cubic (fcc) lattice. So we could use
+equations in section $7.2.2$.
+
+For direction \hkl[100], the $3$ sound velocities are
+\begin{align}
+  v_l & = \sqrt{\frac{ c_{11} }{ \rho }}, \\
+  v_t & = v_t' = \sqrt{\frac{ c_{44} }{ \rho }}.
+\end{align}
+The three corresponding eigenvectors are \hkl[100], \hkl[010] and \hkl[001].
+Thus for a wave propagating the $x$ axis, we have a longitudinal wave with particle displacement along the
+$x$ axis, and two identical but independent transverse waves with particle displacement along $y$ and $z$ axes.
+
+For direction \hkl[110], the $3$ sound velocities are
+\begin{align}
+  v_l  & = \sqrt{\frac{ c_{11} + c_{12} + 2 c_{44} }{ 2 \rho }}, & \text{atomic displacement along \hkl[110]},   \\
+  v_t  & = \sqrt{\frac{ c_{44} }{ \rho }},                       & \text{ atomic displacement along \hkl[001]}   \\
+  v_t' & = \sqrt{\frac{ c_{11} - c_{12} }{ 2 \rho }},            & \text{ atomic displacement along \hkl[-110]}.
+\end{align}
+
+For direction \hkl[111], the $3$ sound velocities are
+\begin{align}
+  v_l  & = \sqrt{\frac{ c_{11} + 2 c_{12} + 4 c_{44} }{ 3 \rho }}, & \text{atomic displacement along \hkl[111]},    \\
+  v_t  & = \sqrt{\frac{ c_{11} - c_{12} + c_{44} }{ 3 \rho }},     & \text{ atomic displacement along \hkl[-110]}   \\
+  v_t' & = \sqrt{\frac{ c_{11} - c_{12} + c_{44} }{ 3 \rho }},     & \text{ atomic displacement along \hkl[-1-12]}.
+\end{align}
+
 
 \subsection{8.1}
 Compare the effective Young's modulus for a $10\%$ volume fraction of hard material $A$ in a matrix of soft material $B$, $E_A=10 E_B$, in two geometries:
@@ -237,6 +283,8 @@ So
   \caption{$\varepsilon(t)$, with different intial $\varepsilon_0$, where $E_a = 1$, $E_b = 3$, $\eta = 1$, $\sigma_0 = 10$.}
   \label{fig:question_8_3}
 \end{figure}
+
+See figure \ref{fig:question_8_3} for reference.
 
 \subsection{8.4}
 The elongation of a cylinder of slightly viscoelastic material is found to be

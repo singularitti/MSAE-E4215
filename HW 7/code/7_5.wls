@@ -15,7 +15,7 @@ qVectorOnDirection[{ a_, b_, c_ }] := q / Norm[{ a, b, c }] { a, b, c }
 
 generateEquationsOnDirection[{ a_, b_, c_ }] := GreenChristoffelEquations[qVectorOnDirection[{ a, b, c }]]
 
-phaseVelocity[{ a_, b_, c_ }] := Sqrt[Eigenvalues[generateEquationsOnDirection[{ a, b, c }]] / \[Rho]] / q
+phaseVelocity[{ a_, b_, c_ }] := Simplify[Sqrt[Eigenvalues[generateEquationsOnDirection[{ a, b, c }]] / \[Rho]] / q, Assumptions-> q > 0]
 
 particleDisplacementDirections[{ a_, b_, c_ }] := Eigenvectors[generateEquationsOnDirection[{ a, b, c }]]
 
@@ -30,4 +30,4 @@ takePositiveSolutions[{1,1,1}]
 particleDisplacementDirections[{1,1,1}]
 
 
-generateEquationsOnDirection[{1,1,1}]//Eigensystem
+Simplify[((generateEquationsOnDirection[{1,1,1}]//Eigenvalues) / \[Rho] // Sqrt) /q,Assumptions->q>0]

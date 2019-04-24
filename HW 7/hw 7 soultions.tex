@@ -24,7 +24,7 @@
 
 \setlength{\parindent}{0em}
 
-%\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sech}{sech}
 
 \begin{document}
 
@@ -51,6 +51,55 @@ at both ends, i.e. cannot be displaced in any direction, and fixed in both $x$ a
 
 \textbf{Solutions:}
 
+A general solution of the equation
+\begin{equation}
+  \frac{ \partial^4 y }{ \partial x^4 } + \frac{ 1 }{ D } \frac{ \partial^2 y }{ \partial t^2 } = 0
+\end{equation}
+has the form of
+\begin{equation}
+  y_n(x) = A_0 \cos k_n x + A_1 \cosh k_n x + B_0 \sin k_n x + B_1 \sinh k_n x,
+\end{equation}
+where $A$'s and $B$'s are the constants to be solved, and $n \in \mathbb{N}$ is
+the label of the $n$th mode.
+For a \emph{doubly-clamped beam}, we usually set the boundary conditions to be
+\begin{align}
+  y(0)  & = y(L) = 0,  \\
+  y'(0) & = y'(L) = 0,
+\end{align}
+where $y = 0$ tells the position of the beam's ends,
+and $y' = 0$ says that the beam at the wall is horizontal.
+
+Apply the BCs, we have
+\begin{equation}\label{eq:bcssimply}
+  \begin{aligned}
+    A_0 + A_1                                                            & = 0, \\
+    A_0 \cos k_n L + A_1 \cosh k_n L + B_0 \sin k_n L + B_1 \sinh k_n L  & =0,  \\
+    B0 + B1                                                              & = 0, \\
+    -A_0 \sin k_n L + A_1 \sinh k_n L + B_0 \cos k_n L + B_1 \cosh k_n L & =0.
+  \end{aligned}
+\end{equation}
+Simplify \eqref{eq:bcssimply},
+\begin{align}
+  \mathrm{ M } \bm{C}       & = \bm{0}, \label{eq:linsys} \\
+  \begin{bmatrix}
+    \sin k_n L + \sinh k_n L  & -\cos k_n L + \cosh k_n L \\
+    -\cos k_n L + \cosh k_n L & -\sin k_n L + \sinh k_n L
+  \end{bmatrix}
+  \begin{bmatrix}
+    A_1 \\
+    B_1
+  \end{bmatrix} & = \bm{0}.
+\end{align}
+To let \eqref{eq:linsys} have nonzero solutions,
+the determinant of $\mathrm{ M }$ must be zero, i.e.,
+\begin{equation}
+  \cos ( k_n L ) \cosh ( k_n L ) = 1.
+\end{equation}
+Solutions are found for approximately
+\begin{equation}
+  k_n L = \frac{ 3 }{ 2 } \pi, \frac{ 5 }{ 2 } \pi, \frac{ 7 }{ 2 }\pi, \ldots
+\end{equation}
+
 \subsection{7.4}
 An earthquake strikes the San Francisco Bay Area;
 how long does it take for the tremors to be felt in Los Angeles, \SI{600}{\kilo\meter} away?
@@ -60,6 +109,7 @@ Calculate for the P- (primary) wave due to compression and the
 S- (secondary) wave due to shear, assuming a poisson ratio of $\nu= 0.25$.
 
 \textbf{Solutions:}
+
 The P-wave modulus is
 \begin{equation}
   M = \frac{ E (1 - \nu) }{ 1 - \nu - 2 \nu^2 } = \SI{12}{\giga\pascal}.
@@ -91,7 +141,7 @@ equations in section $7.2.2$.
 
 For direction \hkl[100], the $3$ sound velocities are
 \begin{align}
-  v_l & = \sqrt{\frac{ c_{11} }{ \rho }}, \\
+  v_l & = \sqrt{\frac{ c_{11} }{ \rho }},        \\
   v_t & = v_t' = \sqrt{\frac{ c_{44} }{ \rho }}.
 \end{align}
 The three corresponding eigenvectors are \hkl[100], \hkl[010] and \hkl[001].
@@ -111,7 +161,8 @@ For direction \hkl[111], the $3$ sound velocities are
   v_t  & = \sqrt{\frac{ c_{11} - c_{12} + c_{44} }{ 3 \rho }},     & \text{ atomic displacement along \hkl[-110]}   \\
   v_t' & = \sqrt{\frac{ c_{11} - c_{12} + c_{44} }{ 3 \rho }},     & \text{ atomic displacement along \hkl[-1-12]}.
 \end{align}
-
+Yes, usually there will be a directional dependence of the velocities,
+because $c_{11}$, $c_{12}$ and $c_{44}$ may change in different directions, just as what we see in section $6.5$.
 
 \subsection{8.1}
 Compare the effective Young's modulus for a $10\%$ volume fraction of hard material $A$ in a matrix of soft material $B$, $E_A=10 E_B$, in two geometries:
@@ -125,12 +176,12 @@ Compare the effective Young's modulus for a $10\%$ volume fraction of hard mater
 \begin{itemize}
   \item Using equation $(8.1)$,
         \begin{equation}
-          E = v_A E_A + v_B E_B = 0.1 \times 10 E_B + 0.9 E_B = 1.9 E_B.
+          E = V_A E_A + V_B E_B = 0.1 \times 10 E_B + 0.9 E_B = 1.9 E_B.
         \end{equation}
 
   \item Using equation $(8.2)$,
         \begin{equation}
-          E = \frac{ 1 }{ \frac{ v_A }{ E_A } + \frac{ v_B }{ E_B } }
+          E = \frac{ 1 }{ \frac{ V_A }{ E_A } + \frac{ V_B }{ E_B } }
           = \frac{ 100 }{ 91 } E_B.
         \end{equation}
 
@@ -139,7 +190,7 @@ Compare the effective Young's modulus for a $10\%$ volume fraction of hard mater
           E^{-1} = \frac{V_A}{E_A}+\frac{V_B}{E_B}- \frac{2 V_A V_B}{E_A E_B}\frac{\left(\nu_A E_B-\nu_B E_A\right)^2}{V_A E_A\left(1- \nu_B\right)+ V_B E_B\left(1 - \nu_A\right)}
           \approx 0.64 / E_B,
         \end{equation}
-        so $E = 1.5625 E_B$.
+        so $E \approx 1.56 E_B$.
 \end{itemize}
 
 \subsection{8.2}
@@ -150,6 +201,59 @@ fractions $V_A$, $V_B$ and isotropic elastic constants $E_A, E_B, \nu_A, \nu_B$.
 
 \textbf{Solutions:}
 
+In direction $\hat{\bm{x}}_1$, we have fibre-like tension. So
+\begin{equation}\label{eq:sg11}
+  \sigma_{1} = V_A \sigma_{1A} + V_B \sigma_{1B},
+\end{equation}
+where $\sigma_{1}$ denotes the total stress on that direction, and
+$V_A$, $V_B$ are the volume fractions of $A$ and $B$, respectively.
+This is an isostrain case, so
+\begin{equation}
+  \varepsilon_{1A} = \varepsilon_{1B} = \varepsilon_{1},
+\end{equation}
+where
+\begin{align}
+  \varepsilon_{1A} & = \frac{ \sigma_{1A} }{ E_A } - \frac{ \nu_A }{ E_A } (\sigma_{2A} + \sigma_{3A}), \\
+  \varepsilon_{1B} & = \frac{ \sigma_{1B} }{ E_B } - \frac{ \nu_B }{ E_B } (\sigma_{2B} + \sigma_{3B}).
+\end{align}
+
+Similarly, in direction $\hat{\bm{x}}_2$, assume we have a stress $\sigma_{2}$ here,
+\begin{align}
+  \varepsilon_{2A} & = \frac{ \sigma_{2A} }{ E_A } - \frac{ \nu_A }{ E_A } (\sigma_{1A} + \sigma_{3A}), \\
+  \varepsilon_{2B} & = \frac{ \sigma_{2B} }{ E_B } - \frac{ \nu_B }{ E_B } (\sigma_{1B} + \sigma_{3B}), \\
+  \varepsilon_{2A} & = \varepsilon_{2B} = \varepsilon_{2}.
+\end{align}
+However, the difference from $\hat{\bm{x}}_1$ is that
+\begin{equation}
+  \sigma_{2} = V_A \sigma_{2A} + V_B \sigma_{2B} = 0,
+\end{equation}
+since in direction $\hat{\bm{x}}_2$ the system is traction-free.
+
+In direction $\hat{\bm{x}}_3$,
+we have plate-like tension (isostress). Besides,
+this direction is also traction-free. So
+\begin{equation}
+  \sigma_{3A} = \sigma_{3B} = \sigma_{3} = 0,
+\end{equation}
+and
+\begin{equation}\label{eq:ep33}
+  \varepsilon_{3} = V_A \varepsilon_{3A} + V_B \varepsilon_{3B}.
+\end{equation}
+
+Solve equations \eqref{eq:sg11} - \eqref{eq:ep33}, we derive
+\begin{equation}
+  \begin{split}
+    E_1 &= \frac{ \sigma_1 }{ \varepsilon_1 } \\
+    &= \frac{E_{A}^{2} V_{A}^{2} \nu_{B}^{2} - E_{A}^{2} V_{A}^{2} + 2 E_{A} E_{B} V_{A} V_{B} \nu_{A} \nu_{B} - 2 E_{A} E_{B} V_{A} V_{B} + E_{B}^{2} V_{B}^{2} \nu_{A}^{2} - E_{B}^{2} V_{B}^{2}}{E_{A} V_{A} \nu_{B}^{2} - E_{A} V_{A} + E_{B} V_{B} \nu_{A}^{2} - E_{B} V_{B}}.
+  \end{split}
+\end{equation}
+This is done by using a Python package called \texttt{sympy}. I have pasted the link
+to the IPython notebook for your convenience:
+\url{https://nbviewer.jupyter.org/urls/gitlab.com/sucan/MSAE-E4215/raw/master/HW%206/code/8_2.ipynb#}.
+The variable \texttt{a} is a dictionary that contains all the variables in the intermediate
+steps.
+You can copy my code and run \texttt{a[x]} where \texttt{x} is a variable name, like
+\texttt{e1}, \texttt{s1}, \texttt{nua}, etc., to see them one by one.
 
 \subsection{8.3}
 Consider a model of a viscoelastic solid in which a Maxwell element $(E_a, \eta)$ is in
@@ -296,19 +400,106 @@ if measurements are taken for a full range of masses applied to the end of the s
 
 \textbf{Solutions:}
 
+From the problem statement:
+\begin{equation}
+  \varepsilon(\SI{86400}{\second}) = 1.01 \varepsilon(\SI{1e-13}{\second}).
+\end{equation}
+Treating our slightly viscoelastic solid as a standard-linear solid:
+\begin{equation}
+  \varepsilon_{R} = 1.01 \varepsilon_{U}.
+\end{equation}
+For an applied step stress $\sigma_{0} = E \varepsilon$,
+\begin{equation}
+  E_{R}^{-1} = 1.01 E_{U}^{-1}.
+\end{equation}
+This form compares well with equation $(8.91)$. Hence, we can use the sinusoidal response in the limit of
+small difference between the relaxed and unrelexed moduli in order to estaimate $Q$, where
+\begin{equation}
+  \Delta = 0.01.
+\end{equation}
+So,
+\begin{align}
+  \big( Q^{-1} \big)_\text{max} & = \frac{ \Delta }{ 2 } = 0.005, \\
+  Q_\text{min}                  & = 200.
+\end{align}
+Unfortunately, we can’t go much farther with the problem. There was a slight error in the problem
+statement. It turns out a resonance frequency, or some related quantity, needs to be provided in order
+to calculate $\tau_C$. Recall:
+\begin{equation}
+  \tau = \frac{ 2 \pi }{ \omega_0 },
+\end{equation}
+and
+\begin{equation}
+  \tau_C = \frac{ Q \tau }{ \pi }.
+\end{equation}
+Then using $\tau_C$ we could easily find the minimum decay-time for a spring made of the this material,
+set into free-vibration, to decay to $10\%$ of its original amplitude. As an aside, please note that the
+minimum decay time occurs at the value for which quality factor of the resonance is minimized. Less
+sharply peaked resonances, hence lower quality factors, correspond to more loss (dissipation) in the
+system. This occurs when $\omega \tau = 1$. Where the frequency dependent behavior of the quality factor can
+be determined from:
+\begin{equation}
+  Q^{-1} = \big( Q^{-1} \big)_\text{max} \frac{ 2 \omega \tau }{ 1 + \omega^2 \tau^2 }.
+\end{equation}
+Back to the problem at hand. The shortest decay-time for a spring made of the this material, set into
+free-vibration, to decay to $10\%$ of its original amplitude is:
+\begin{equation}
+  \frac{ u(N) }{ u_0 } = e^{-\frac{ \tau }{ \tau_C }} = 0.1.
+\end{equation}
+
+
 \subsection{8.5}
 The notes on a piano span a range from \SI{27.5}{\hertz} to \SI{4186}{\hertz}.
 The A keys are tuned to \SI{440}{\hertz} for A4, with each octave doubling in frequency
 in the following sequence: 27.5, 55, 110, 220, 440, 880, 1760, 3520 Hz for A1-A8 on
-the keyboard.  Plot (using python) as a function of frequency over $A0-A7$ \emph{the sustain time}
+the keyboard.  Plot (using python) as a function of frequency over A0-A7 \emph{the sustain time}
 for a given note struck on the piano, defined as the time needed for the volume (square of amplitude)
 to decay to $1/e$ its initial value.  Use a logarithmic scale for the frequency. Make your estimate
 \begin{enumerate}[a)]
-  \item assuming that the $Q$ value for the oscillation is that for $A4$ as calculated in the lectures,
+  \item assuming that the $Q$ value for the oscillation is that for A4 as calculated in the lectures.
+
+        \textbf{Solutions:}
+
+        From section $8.4.3$:
+        \begin{align}
+          \tau_0   & = \SI{1.89e-15}{\second},        \\
+          \Delta H & = \SI{83700}{\joule \per \mole}.
+        \end{align}
+        First assuming that the $Q$ value for the oscillation is that for A4 as calculated in the lectures:
+        \begin{equation}
+          Q^{-1} = \big( Q^{-1} \big)_\text{max} \sech \bigg( \ln(\omega \tau_0) + \frac{ \Delta H }{ R T } \bigg),
+        \end{equation}
+        where
+        \begin{equation}
+          \big( Q^{-1} \big)_\text{max} = \frac{ \num{5.4e-5} }{ \num{5.1e-4} } = 0.106,
+        \end{equation}
+        and $R = 8.314$, $T = 295$.
   \item taking into account the frequency dependence of $Q$ expected for piano wire. Does the result seem reasonable?
+
+        \textbf{Solutions:}
+        Taking into account the frequency dependence of $Q$:
+        \begin{equation}
+          \tau_C = \frac{ Q }{ 2 \pi \nu } = \frac{ 1 }{ 0.106 \times 2 \pi \nu } \cosh \bigg( \ln(2 \pi \nu \tau_0) + \frac{ \Delta H }{ R T } \bigg).
+        \end{equation}
+
+        Now we can plot for A1-A8 on the keyboard, as figure \ref{fig:tauc} shows.
+        \begin{figure}[h]
+          \centering
+          \includegraphics[width=0.7\textwidth]{./images/8_5}
+          \caption{$\tau_C$ VS $\nu$, in log scale.}
+          \label{fig:tauc}
+        \end{figure}
+
+        This answer does not seem reasonable given that we would expect higher notes to
+        ring longer than the lower notes. Our answer shows very little differnce in
+        magnitude between the characteristic times for A1-A8.
+        However, this answer does not account for differing lengths of the piano wires
+        used for the varying notes amongst other things.
+
 \end{enumerate}
 
-\textbf{Solutions:}
+
+
 
 % \bibliographystyle{unsrt}
 % \bibliography{ref}

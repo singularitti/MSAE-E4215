@@ -15,9 +15,12 @@ def epsilon(t):
 
 if __name__ == "__main__":
     time = np.linspace(0, 40, 100)
-    for epsilon0 in np.linspace(0, 2, 5):
-        plt.plot(time, epsilon(time), label="$\\varepsilon(t)$, $\\varepsilon_0 = {0}$".format(epsilon0))
-    plt.plot(time, [sigma0 / Eb] * len(time), 'k-.', label="$\\frac{ \\sigma_0 }{ E_b }$")
+    epsilon0 = sigma0 / (Ea + Eb)
+    # for epsilon0 in np.linspace(0, 2, 5):
+    #     plt.plot(time, epsilon(time), label="$\\varepsilon(t)$, $\\varepsilon_0 = {0}$".format(epsilon0))
+    plt.plot(time, epsilon(time), label="$\\varepsilon(t)$")
+    plt.plot(time, [sigma0 / (Ea + Eb)] * len(time), '-.', label="$\\frac{ \\sigma_0 }{ E_a + E_b }$")
+    plt.plot(time, [sigma0 / Eb] * len(time), '-.', label="$\\frac{ \\sigma_0 }{ E_b }$")
     plt.xlim((min(time), max(time)))
     plt.xlabel("$t$")
     plt.ylabel("$\\varepsilon$")

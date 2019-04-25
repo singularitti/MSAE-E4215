@@ -15,7 +15,7 @@ if __name__ == "__main__":
     y = list(map(tau, frequencies))
     diff = max(y) - min(y)
     plt.figure(figsize=(8, 6))
-    plt.plot(y, 'o')
+    plt.plot(np.log(frequencies), y, 'o')
     plt.ylim((min(y) - diff / 50, max(y) + diff / 50))
     plt.xlabel("$\\ln(\\nu)$")
     plt.ylabel("$\\tau_C$")
